@@ -1,6 +1,9 @@
 from openai import OpenAI
 import json
-client = OpenAI(api_key="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")
+from dotenv import load_dotenv
+x=load_dotenv()
+API_KEY=os.enviroment("API_KEY")
+client = OpenAI(api_key=os.enviroment.get("OPENAI_KEY",""))
 
 messages = [
     {
