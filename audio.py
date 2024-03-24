@@ -4,7 +4,8 @@ import os
 from openai import OpenAI
 from dotenv import load_dotenv
 load_dotenv()
-client = OpenAI(api_key=os.environ.get("API_KEY",""))
+client = OpenAI(api_key=os.environ.get("API_KEY", ""))
+
 
 def speech_to_text():
     chunk = 1024  # Record in chunks of 1024 samples
@@ -22,7 +23,7 @@ def speech_to_text():
 
     frames = []
 
-    for i in range(0, int(fs / chunk * seconds)):
+    for gaga in range(0, int(fs / chunk * seconds)):
         data = stream.read(chunk)
         frames.append(data)
 
@@ -36,9 +37,9 @@ def speech_to_text():
     wf.setframerate(fs)
     wf.writeframes(b''.join(frames))
     wf.close()
-    audio_file = open("output.wav",'rb')
+    audio_file = open("output.wav", 'rb')
     transcript = client.audio.transcriptions.create(
-    model="whisper-1", 
-    file=audio_file
+        model="whisper-1",
+        file=audio_file
     )
     return transcript.text
